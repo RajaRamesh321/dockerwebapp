@@ -1,23 +1,26 @@
 ---
 version: "3"
 services:
- devopsdb:
-   image: rajagadi/automation:db
-   ports:
-     - "3306:3306"
-   networks:
-     - mynetworks
-   deploy: 
-     replicas: 3
+  devopsdb:
+    image: rajagadi/automation:db
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetworks
+    deploy:
+      replicas: 3
 
- application:
-   image: rajagadi/automation:app
-   ports:
-     - "1111:8080"
-   depends_on:
-     - "devopsdb"
-   deploy: 
-     replicas: 3
- networks:
-   - mynetworks:
-       driver: overlay
+  application:
+    image: rajagadi/automation:app
+    ports:
+      - "1111:8080"
+    depends_on:
+      - devopsdb
+    networks:
+      - mynetworks
+    deploy:
+      replicas: 3
+
+networks:              # ✅ top level — same indentation as services
+  mynetworks:          # ✅ mapping not a list
+    driver: overlay
