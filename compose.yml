@@ -9,6 +9,8 @@ services:
       - mynetworks
     deploy:
       replicas: 3
+    volumes:
+      - db_data:/var/lib/mysql
 
   application:
     image: rajagadi/automation:app
@@ -23,3 +25,7 @@ services:
 networks:              # ✅ top level — same indentation as services
   mynetworks:          # ✅ mapping not a list
     driver: overlay
+
+volumes:
+  db_data:             # named volume — Docker manages the storage
+    driver: local
