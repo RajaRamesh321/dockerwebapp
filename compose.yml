@@ -1,5 +1,5 @@
 ---
-version: "3"
+version: "3.9"
 services:
   devopsdb:
     image: rajagadi/automation:db
@@ -18,8 +18,7 @@ services:
       - devopsdb
     networks:
       - mynetworks
-    deploy:
-      replicas: 3
+    
 
 networks:              # ✅ top level — same indentation as services
   mynetworks:          # ✅ mapping not a list
